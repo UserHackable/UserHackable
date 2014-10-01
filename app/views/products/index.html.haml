@@ -1,18 +1,23 @@
-%h1 products
+.products
+  %h1 products
 
 
 
-- @products.each do |product|
-  %h2= product.title
-  %p= product.description
-  %img= product.image_url
-  %b= product.price
-  %a= product.link
-  .pull-right
-    = link_to 'Show', product
-    = link_to 'Edit', edit_product_path(product)
-    = link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  - @products.each do |product|
+    %h2= product.title
+    .pull-right
+      %b Buy $
+      %b= product.price
+      %br
+      = link_to 'Show', product
+      = link_to 'Edit', edit_product_path(product)
+      = link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    .main_img
+      %img{src: product.image_url}
+    %p= product.description
+    %a= product.link
 
-%br
 
-= link_to 'New Product', new_product_path
+  %br
+
+  = link_to 'New Product', new_product_path
