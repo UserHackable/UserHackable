@@ -1,0 +1,18 @@
+%h1 products
+
+
+
+- @products.each do |product|
+  %h2= product.title
+  %p= product.description
+  %img= product.image_url
+  %b= product.price
+  %a= product.link
+  .pull-right
+    = link_to 'Show', product
+    = link_to 'Edit', edit_product_path(product)
+    = link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Product', new_product_path
