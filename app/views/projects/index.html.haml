@@ -1,15 +1,21 @@
-%h1 Listing projects
-.pull-right
-  %p hi my name is keith  
-%table
+%h1 projects
+
 - @projects.each do |project|
-  %tr
-    %td= project.title
-    %tr
-      %td= project.description
-    %td= link_to 'Show', project
-    %td= link_to 'Edit', edit_project_path(project)
-    %td= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  .row
+    %h3.col-sm-2= project.title
+    .pull-right
+      %a{href: project}
+        %span.glyphicon.glyphicon-eye-open
+      %a{href: edit_project_path(project)}
+        %span.glyphicon.glyphicon-wrench
+      %a{href: project_path(project), data: {method: :delete, confirm: "Are you sure you want to delete #{@project}?"}}
+        %span.glyphicon.glyphicon-trash
+  .clearfix
+    .vid.pull-left
+      %iframe{:allowfullscreen => "", :frameborder => "0", :height => "210", :src => project.embed_url, :width => "373"}
+    .desc
+      %p= project.description
+
 
 %br
 
