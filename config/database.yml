@@ -11,14 +11,9 @@ local: &local
   template: template0
 
 heroku: &heroku
-  adapter: postgresql
   encoding: unicode
   pool: 5
-  database: <%= ENV["HEROKU_DATABASE"] %> 
-  username: <%= ENV["HEROKU_USERNAME"] %> 
-  password: <%= ENV["HEROKU_PASSWORD"] %> 
-  host: <%= ENV["HEROKU_HOST"] %> 
-  port: <%= ENV["HEROKU_PORT"] %> 
+  url: <%= ENV["DATABASE_URL"] %> 
 
 development:
   <<: *local
@@ -31,9 +26,5 @@ test:
 production:
   <<: *heroku
 #  database: <%= Rails.application.class.parent_name %>_production
-
-prices:
-  <<: *heroku
-
 
 
