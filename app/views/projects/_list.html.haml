@@ -1,0 +1,17 @@
+- @projects.each do |project|
+  .clearfix
+    .vid.pull-left
+      %a{href: project_path(project)}
+        %img{src: project.img_url}
+    .desc
+      .editbuttons
+        %a{href:project_path(project)}
+          %span.glyphicon.glyphicon-eye-open
+        %a{href: edit_project_path(project)}
+          %span.glyphicon.glyphicon-wrench
+        %a{href: project_path(project), data: {method: :delete, confirm: "Are you sure you want to delete #{@project}?"}}
+          %span.glyphicon.glyphicon-trash
+      
+      %h3= project.title
+      %p= project.description
+
