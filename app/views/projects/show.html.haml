@@ -1,12 +1,15 @@
-%p#notice= notice
-
-%p
-  %b Title:
-  = @project.title
-%p
-  %b Description:
-  = @project.description
-
+.row
+  %h3.col-sm-2= @project.title
+  .editbuttons
+    %a{href: edit_project_path(@project)}
+      %span.glyphicon.glyphicon-wrench
+    %a{href: project_path(@project), data: {method: :delete, confirm: "Are you sure you want to delete #{@project}?"}}
+      %span.glyphicon.glyphicon-trash
+.clearfix
+  .vid.pull-left
+    %iframe{:allowfullscreen => "", :frameborder => "0", :height => "360", :src => @project.embed_url, :width => "640"}
+  .desc
+    %p= @project.description
 = link_to 'Edit', edit_project_path(@project)
 \|
 = link_to 'Back', projects_path
