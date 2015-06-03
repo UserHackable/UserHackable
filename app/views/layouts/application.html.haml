@@ -10,4 +10,6 @@
   %body.background
     = render "layouts/top"
     .content
+      - if notice = flash[:notice]
+        .notice= notice
       = yield

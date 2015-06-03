@@ -6,6 +6,8 @@ gem 'pg'
 gem 'unicorn'
 gem 'unicorn-rails'
 gem 'devise'
+gem "omniauth-google-oauth2"
+
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -24,6 +26,8 @@ gem 'simple_form'
 gem 'spring',        group: :development
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
+gem 'figaro' # reads config/application.yml
+
 
 group :development do
   gem 'better_errors'
