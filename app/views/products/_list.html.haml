@@ -1,0 +1,22 @@
+- @products.each do |product|
+  .clearfix
+    .main_img.pull-left
+      %a{href: product_path(product)}
+        %img{src: product.image_url}
+    .desc
+      .editbuttons
+        %a{href: product_path(product)}
+          %span.glyphicon.glyphicon-eye-open
+        %a{href: edit_product_path(product)}
+          %span.glyphicon.glyphicon-wrench
+        %a{href: product_path(product), data: {method: :delete, confirm: "Are you sure you want to delete #{@project}?"}}
+          %span.glyphicon.glyphicon-trash
+
+      %h3= product.title
+      %p= product.description
+      .pull-right
+        %b.btn.btn-primary 
+          Buy
+          = product.price
+        %br
+

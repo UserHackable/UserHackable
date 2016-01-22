@@ -1,24 +1,6 @@
 .products
   %h1 Products
   
-  - @products.each do |product|
-    .clearfix
-      .main_img.pull-left
-        %a{href: product.link}
-          %img{src: product.image_url}
-      .desc
-        .editbuttons
-          %a{href: product_path(product)}
-            %span.glyphicon.glyphicon-eye-open
-          %a{href: edit_product_path(product)}
-            %span.glyphicon.glyphicon-wrench
-          %a{href: project_path(product)} 
-            %span.glyphicon.glyphicon-trash
-        %h3= product.title
-        %p= product.description
-        .pull-right  
-          %b Buy
-          %b= product.price
-          %br
+= render "list"
 
-  = link_to 'New Product', new_product_path
+= link_to 'New Product', new_product_path

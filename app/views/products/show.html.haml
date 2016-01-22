@@ -1,20 +1,20 @@
 %p#notice= notice
 
-%p
-  %b Title:
-  = @product.title
-%p
-  %b Description:
-  = @product.description
-%p
-  %b Image url:
-  = @product.image_url
-%p
-  %b Price:
-  = @product.price
-%p
-  %b Link:
-  = @product.link
+.clearfix
+  .main_img.pull-left  
+    %h3= @product.title
+    %a{href: @product.link}
+      %img{src: @product.image_url}
+  .desc
+    .des.pull-left= @product.description
+    .editbuttons
+      %a{href: product_path(@product)}
+        %span.glyphicon.glyphicon-eye-open
+      %a{href: edit_product_path(@product)}
+        %span.glyphicon.glyphicon-wrench
+      %a{href: project_path(@product)} 
+        %span.glyphicon.glyphicon-trash
+    .pull-right  
 
 = link_to 'Edit', edit_product_path(@product)
 \|
