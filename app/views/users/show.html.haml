@@ -1,0 +1,9 @@
+%h1
+  - if src = current_user.image_url
+    %img{src: src}
+  = current_user.name
+%ul
+  %li= current_user.name
+  %li= current_user.email
+  %li= current_user.first_name
+  %li= current_user.last_name

@@ -6,18 +6,34 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:google_oauth2]
          
 
-  def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
+  def self.from_omniauth(access_token)
     data = access_token.info
-    user = User.where(:email => data["email"]).first
+    name = data["name"]
+    email = data["email"]
+    first_name = data["first_name"]
+    last_name = data["last_name"]
+    image_url = data["image"]
+    puts data.to_h.inspect
+    if user = User.where(email: email).first
+      user.update_attributes(
+        name: name,
+        first_name: first_name,
+        last_name: last_name,
+        image_url: image_url
+      )
 
-#    unless user # create if they don't exist
-#        user = User.create(name: data["name"],
-#           email: data["email"],
-#           password: Devise.friendly_token[0,20]
-#        )
-#    end
-
+    else
+      user = User.create(
+        name: name,
+        email: email,
+        first_name: first_name,
+        last_name: last_name,
+        image_url: image_url,
+        password: Devise.friendly_token[0,20]
+      )
+    end
     user
   end
+
 
 end

@@ -14,15 +14,6 @@
           %a.navbar-brand{:href => "/"} UserHackable
         / Collect the nav links, forms, and other content for toggling
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
-          %ul.nav.navbar-nav
-            %li
-              %a{href: products_path}
-                Products
-            /%li
-            / %a{href: projects_path}
-            /  Projects
-            
-            %li
-              %a{href: user_omniauth_authorize_path(:google_oauth2)}
-                Google
+          = render 'layouts/navbar'
+          = render 'users/nav'
 
