@@ -1,33 +1,49 @@
 ruby '2.2.1'
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.6'
+gem 'rails', '4.2.1'
 gem 'pg'
-gem 'unicorn'
-gem 'unicorn-rails'
-gem 'devise'
-gem "omniauth-google-oauth2"
+# gem 'unicorn'
+# gem 'unicorn-rails'
+gem 'puma'
 
-
+gem 'sprockets' 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem "jquery-fileupload-rails"
+gem "thin" 
 
-gem 'bootstrap-sass'
 gem 'sass-rails'
 gem 'compass-rails'
+gem 'haml-rails'
+gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 
-gem 'coffee-rails', '~> 4.0.0'
+gem 'devise'
+gem "omniauth-google-oauth2"
+gem 'cancan'
+gem 'rolify'
+gem "simple_form"
+gem "figaro"
+gem "redcarpet"
+gem 'kaminari'
 
-gem 'haml-rails'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0',          group: :doc
-gem 'simple_form'
-gem 'spring',        group: :development
+gem 'aws-sdk-v1'
+gem 'unf'
+gem 'fog'
+gem 'acts_as_orderable'
+gem 'newrelic_rpm'
+gem 's3_direct_upload'
+gem 'nokogiri'
+
+gem 'coffee-rails'
+gem 'uglifier'
+gem 'paperclip'
+gem 'activemerchant'
+gem 'font_assets'
+
+gem 'jbuilder'
 gem 'turbolinks'
-gem 'uglifier', '>= 1.3.0'
-gem 'figaro' # reads config/application.yml
-
 
 group :development do
   gem 'better_errors'
@@ -37,6 +53,7 @@ group :development do
   gem 'quiet_assets'
   gem 'rails_apps_pages'
   gem 'rails_layout'
+  gem 'spring'
 end
 
 group :production do

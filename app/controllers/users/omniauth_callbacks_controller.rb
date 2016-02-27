@@ -18,7 +18,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         # puts image.urls.inspect
         flash[:notice] = "No User: #{email}"
         redirect_to new_user_registration_url
-        # redirect_to root_path # new_user_registration_url
       end
   end
 
