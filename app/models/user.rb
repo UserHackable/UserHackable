@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  # 
+  rolify
   devise :database_authenticatable, :registerable, :recoverable, 
          :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:google_oauth2]
@@ -34,6 +32,5 @@ class User < ActiveRecord::Base
     end
     user
   end
-
 
 end
