@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.1'
 gem 'pg'
-# gem 'unicorn'
-# gem 'unicorn-rails'
 gem 'puma'
 
 gem 'sprockets' 
