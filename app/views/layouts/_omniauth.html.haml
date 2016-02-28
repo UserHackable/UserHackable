@@ -1,0 +1,9 @@
+- devise_mapping = Devise.mappings[:user]
+- resource_class = devise_mapping.to
+- resource_name = devise_mapping.name
+- if devise_mapping.omniauthable?
+  - resource_class.omniauth_providers.each do |provider|
+    %li
+      %a{href: omniauth_authorize_path(resource_name, provider)}
+        %img{src: image_path("login_#{provider}"), alt: provider.to_s.titleize}
+

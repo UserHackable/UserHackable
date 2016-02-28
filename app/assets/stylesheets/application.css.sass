@@ -11,12 +11,14 @@
  * file per style scope.
  *
  *= require jquery-ui
- *= require_tree .
+ *= require jquery.fileupload-ui
+ *= require s3_direct_upload_progress_bars
+ ** *= require_tree .
  *= require_self
 @import bootstrap-sprockets
 @import bootstrap
 
-
 @import layout
 @import projects
 @import products
+@import navbar

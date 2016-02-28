@@ -2,8 +2,8 @@
 %html
   = render "layouts/head"
   %body.background
-    = render "layouts/top"
-    .content
+    = render "layouts/navbar"
+    .container.content
       - if notice = flash[:notice]
         .notice= notice
       = yield

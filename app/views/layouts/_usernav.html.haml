@@ -1,0 +1,14 @@
+%ul.nav.navbar-nav.navbar-right
+  %li#account_menu.dropdown
+    %a.dropdown-toggle{:href => root_path, 'data-toggle' => "dropdown", 'data-target' => '#'}
+      %span.glyphicon.glyphicon-user
+      %span.caret
+    %ul.dropdown-menu.dropdown-menu-right
+      - if user_signed_in?
+        %li= link_to current_user.email, edit_user_registration_path
+        %li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
+        %li= link_to 'Edit Profile', edit_user_registration_path
+      - else
+        // %li= link_to 'Login', new_user_session_path
+        // %li= link_to 'Sign up', new_user_registration_path
+        = render 'layouts/omniauth'
