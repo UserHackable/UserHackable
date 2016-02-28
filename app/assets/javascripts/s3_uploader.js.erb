@@ -1,0 +1,94 @@
+$(function () {
+  var update_delay = 2000,
+      s3 = $(".s3-uploader"),
+      img_type = /^image\/(png|jpe?g|gif)/;
+
+  function updateAttachmentUrl(url) {
+    setTimeout(function() {
+      $.ajax(url).done(function (data) {
+        var unique_id = data.unique_id,
+            file_file_name = data.file_file_name;
+        console.log("attachment_update_check", data);
+        if (file_file_name) {
+          $("#file-" + unique_id).replaceWith(data.html);
+        } else {
+          updateAttachmentUrl(url);
+        }
+      });
+    }, update_delay);
+  }
+
+  s3.each(function(i, e) {
+    var elem = $(e),
+        prefix = elem.data('prefix'),
+        attachment = elem.data('attachment'),
+        id_prefix = '#' + prefix + '_' + attachment;
+        callback_url = elem.data('callbackUrl'),
+        progress_bar_target = elem.data('progressBarTarget'),
+        options = {};
+
+    if (progress_bar_target) {
+      options['progress_bar_target'] = $(progress_bar_target);
+    }
+    if (callback_url) {
+      options['remove_completed_progress_bar'] = false;
+    } else {
+      options['remove_completed_progress_bar'] = true;
+    }
+
+    console.log("initializing .s3-uploader", prefix, attachment, options, elem.data());
+
+    var u = elem.S3Uploader(options);
+    
+    u.bind('s3_uploads_start', function (e) {
+      console.log("s3_uploads_start", e);
+      $('a.continue').addClass('disabled').bind('click', function(e){
+        e.preventDefault();
+      });
+    });
+    u.bind('s3_upload_complete', function (e, file) {
+      console.log("s3_upload_complete", prefix, attachment, e, file);
+      var path = decodeURIComponent(file.filepath),
+          url =  decodeURIComponent(file.url),
+          name =  decodeURIComponent(file.filename),
+          content_type = file.filetype;
+      $(id_prefix + '_name').val(name);
+      $(id_prefix + '_path').val(path);
+      $(id_prefix + '_file_size').val(file.filesize);
+      $(id_prefix + '_content_type').val(content_type);
+      $(id_prefix + '_id').val(file.unique_id);
+      $(id_prefix + '_url').val(url);
+      if (img_type.test(content_type)) { // displayable image
+        // url = url.replace("https://s3.amazonaws.com/",'//'); 
+      } else {
+        url = "<%= asset_path('missing.png') %>"; 
+      }
+      // console.log('image_url',file.url, url, attachment); 
+      $('img#' + attachment + '_preview').attr("src", url);
+      $('.item#' + attachment + '_preview').css("background-image", "url(" + url + ")");
+      $('.preview img').attr("src", url);
+    });
+    u.bind('s3_upload_failed', function (e, content) {
+      console.log("s3_upload_failed", e, content);
+      console.log('stack',content.error_thrown.stack);
+    });
+    u.bind('s3_uploads_complete', function (e) {
+      console.log("s3_uploads_complete", e);
+      $('a.continue').removeClass('disabled').unbind('click')
+      
+    });
+    u.bind('ajax:success', function (e, data) {
+      console.log("ajax:success", e, data);
+      var unique_id = data.file_id,
+          html_target = data.html_target || ("#file-" + unique_id),
+          url = data.url,
+          html = data.html;
+      if (html) {
+        $("#file-" + unique_id).replaceWith(data.html);
+      }
+      if (url) {
+        updateAttachmentUrl(url);
+      }
+    });
+  });
+});

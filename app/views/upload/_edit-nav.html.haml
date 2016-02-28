@@ -1,0 +1,5 @@
+-if can? :create, Headline
+  .pull-right
+    .edit-nav
+    = render partial: 'upload/form', locals: { record: @headline, prompt: "Select Background Image" }
+

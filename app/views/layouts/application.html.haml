@@ -4,6 +4,5 @@
   %body.background
     = render "layouts/navbar"
     .container.content
-      - if notice = flash[:notice]
-        .notice= notice
+      = render 'layouts/alerts'
       = yield

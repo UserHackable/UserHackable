@@ -1,12 +1,19 @@
-= simple_form_for(@product) do |f|
-  = f.error_notification
+.row
+  .col-sm-6
+    = simple_form_for(@product, wrapper: :horizontal_form ) do |f|
+      = image_hidden f
+      = f.error_notification
 
-  .form-inputs
-    = f.input :title
-    = f.input :description
-    = f.input :image_url
-    = f.input :price
-    = f.input :link
+      .form-inputs
+        = f.input :title
+        = f.input :image_name
+        = f.input :price
+        = f.input :link
+        = f.input :description
 
-  .form-actions
-    = f.button :submit
+      .form-actions
+        = f.button :submit
+  .col-sm-6
+    = image_upload(@product)
+    %img#image_preview{src: @product.image.url}
+

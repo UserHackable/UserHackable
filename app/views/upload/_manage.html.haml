@@ -1,0 +1,14 @@
+-if can? :index, record
+  %a{href: prefix}
+    %span.glyphicon.glyphicon-list
+-if can? :new, record
+  %a{href: prefix + '/new'}
+    %span.glyphicon.glyphicon-plus
+-if record.persisted?
+  -if can? :show, record
+    %a{href: url_for(record)}
+      %span.glyphicon.glyphicon-file
+  -if can? :destroy, record
+    %a{href: url_for(record), data: {method: :delete, confirm: "Are you sure you want to delete #{record.title}?"}}
+      %span.glyphicon.glyphicon-trash
+

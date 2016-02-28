@@ -10,7 +10,5 @@
       %a.navbar-brand{:href => root_path}
         %img.logo{src: image_path("GearLogo40.png"), alt: "User Hackable"}
     #navbar.navbar-collapse.collapse
-      %ul.nav.navbar-nav
-        %li.active
-          %a{:href => products_path} Products
+      = render 'layouts/nav'
       = render 'layouts/usernav'

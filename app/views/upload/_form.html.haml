@@ -1,0 +1,15 @@
+.fileupload-buttonbar
+  %span.btn.btn-success.fileinput-button
+    %i.glyphicon.glyphicon-cloud-upload
+    %span= defined?(prompt) ? prompt : 'Upload Files'
+    %input#file{multiple: defined?(multiple) && multiple, name: "file", type: "file"}/
+%script#template-upload{:type => "text/x-tmpl"}
+  .upload{:id => "file-{%=o.unique_id%}"}
+    {%=o.name%}
+    .progress
+      .bar{:style => "width: 0%"}
+%script#template-download{:type => "text/x-tmpl"}
+  .download{:id => "file-{%=o.unique_id%}"}
+    %a{href:"{%=o.url%}"}
+      {%=o.name%}
+
