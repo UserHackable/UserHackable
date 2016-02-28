@@ -5,5 +5,5 @@
   - resource_class.omniauth_providers.each do |provider|
     %li
       %a{href: omniauth_authorize_path(resource_name, provider)}
-        %img{src: image_path("login_#{provider}"), alt: provider.to_s.titleize}
+        %img{src: image_path("login_#{provider}.png"), alt: provider.to_s.titleize}
 
